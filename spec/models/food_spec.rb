@@ -22,6 +22,11 @@ RSpec.describe Food, type: :model do
       it "should fail when price is empty" do
         expect(Food.new(@params.slice(:name, :description))).to_not be_valid
       end
+
+      it "should fail when the price is not float" do
+        expect(Food.create({ name: "Meatballs", description: "A round shaped meat", price: "asd" })).to_not be_valid
+      end
+      
     end
   end
 end
