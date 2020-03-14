@@ -28,13 +28,13 @@ RSpec.describe Food, type: :model do
       end
 
       it "should fail when the description length is more than 100" do
-        expect(Food.create({ 
-          name: "Meatballs", 
-          description: "scoSQYjFebApttSjenovV5R8PN3OcTt14GvTZQX9JIDUe62cQsmpuqvymqgfaxvZQGeZI7d9Wes7EbSmFkYPFs4hm0ZowcpgxhYwP5A2oJmHYN", 
+        expect(Food.create({
+          name: "Meatballs",
+          description: "scoSQYjFebApttSjenovV5R8PN3OcTt14GvTZQX9JIDUe62cQsmpuqvymqgfaxvZQGeZI7d9Wes7EbSmFkYPFs4hm0ZowcpgxhYwP5A2oJmHYN",
           price: 100
           })
         ).to_not be_valid
-      end      
+      end
     end
   end
 end

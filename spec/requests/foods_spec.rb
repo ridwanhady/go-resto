@@ -1,4 +1,4 @@
-
+# frozen_string_literal: true
 
 require "rails_helper"
 
@@ -18,11 +18,19 @@ RSpec.describe "/foods", type: :request do
   # Food. As you add validations to Food, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "Nasi Goreng",
+      description: "Nasi yang digoreng",
+      price: 120000
+    }
   end
 
   let(:invalid_attributes) do
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: "This is an invalid example of how the name is long enough to make it fails",
+      description: "This is an invalid example of how the descroption is long enough to make it fails the line length requirement",
+      price: "Invalid Price"
+    }
   end
 
   describe "GET /index" do
@@ -87,14 +95,18 @@ RSpec.describe "/foods", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) do
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: "Meatball",
+          description: "Meatball is also known as Bakso",
+          price: 100
+        }
       end
 
       it "updates the requested food" do
         food = Food.create! valid_attributes
         patch food_url(food), params: { food: new_attributes }
         food.reload
-        skip("Add assertions for updated state")
+        expect(food.slice(:name, :description, :price).symbolize_keys).to eq(new_attributes)
       end
 
       it "redirects to the food" do
